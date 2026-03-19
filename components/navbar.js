@@ -32,7 +32,7 @@ const Navbar = () => {
         </li>
         <div className='h-[65%] bg-white/20 w-px'></div>
         <li>
-          <a href="https://github.com/noobcodercloud/cooked">Github</a>
+          <a href="https://github.com/noobcodercloud/cooked" target="_blank">Github</a>
         </li>
       </ul>
     </nav>

@@ -18,6 +18,17 @@ export async function GET(request) {
         },
       }
     );
+
+    // Check if response is OK before parsing
+    if (!tracksResponse.ok) {
+      const errorText = await tracksResponse.text();
+      console.error("Spotify tracks error:", errorText);
+      return Response.json(
+        { error: "Failed to fetch Spotify data", details: errorText },
+        { status: tracksResponse.status }
+      );
+    }
+
     const tracksData = await tracksResponse.json();
 
     // Fetch top artists
@@ -29,6 +40,16 @@ export async function GET(request) {
         },
       }
     );
+
+    if (!artistsResponse.ok) {
+      const errorText = await artistsResponse.text();
+      console.error("Spotify artists error:", errorText);
+      return Response.json(
+        { error: "Failed to fetch Spotify data", details: errorText },
+        { status: artistsResponse.status }
+      );
+    }
+
     const artistsData = await artistsResponse.json();
 
     // Fetch recently played
@@ -40,6 +61,16 @@ export async function GET(request) {
         },
       }
     );
+
+    if (!recentResponse.ok) {
+      const errorText = await recentResponse.text();
+      console.error("Spotify recent error:", errorText);
+      return Response.json(
+        { error: "Failed to fetch Spotify data", details: errorText },
+        { status: recentResponse.status }
+      );
+    }
+
     const recentData = await recentResponse.json();
 
     // Combine and simplify the data
@@ -64,7 +95,7 @@ export async function GET(request) {
   } catch (error) {
     console.error("Error fetching Spotify data:", error);
     return Response.json(
-      { error: "Failed to fetch Spotify data" },
+      { error: "Failed to fetch Spotify data", message: error.message },
       { status: 500 }
     );
   }

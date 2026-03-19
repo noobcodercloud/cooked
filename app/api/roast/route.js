@@ -12,8 +12,7 @@ export async function POST(request) {
   try {
     const { spotifyData } = await request.json();
 
-    // Create a prompt based on Spotify data
-const prompt = `
+    const prompt = `
 You are a witty music critic who roasts people based on their Spotify listening habits. 
 Be funny, sarcastic, and a bit mean (but not offensive). 
 
@@ -48,14 +47,13 @@ Make it entertaining, shareable, and most importantly - SPECIFIC to their actual
       contents: prompt
     });
 
-    const roast = response.text();
+    const roast = response.text;
 
     return Response.json({ roast });
-
   } catch (error) {
     console.error("Error generating roast:", error);
     return Response.json(
-      { error: "Failed to generate roast" },
+      { error: "Failed to generate roast", message: error.message },
       { status: 500 }
     );
   }
