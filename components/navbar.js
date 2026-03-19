@@ -1,8 +1,11 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 
+import { useSession, signIn } from 'next-auth/react';
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
+  const { data: session } = useSession();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.pageYOffset > 10)
@@ -24,9 +27,13 @@ const Navbar = () => {
         <span className='text-2xl font-semibold text-white'>Cooked</span>
       </div>
       <ul className={`${boxClasses} w-40 text-white`}>
-        <li className=''>Login</li>
+        <li onClick={() => !session && signIn("spotify")}>
+          <span>{session ? session.user.name : 'Login'}</span>
+        </li>
         <div className='h-[65%] bg-white/20 w-px'></div>
-        <li className=''>Github</li>
+        <li>
+          <a href="https://github.com/noobcodercloud/cooked">Github</a>
+        </li>
       </ul>
     </nav>
   )

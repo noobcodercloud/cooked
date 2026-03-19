@@ -13,21 +13,30 @@ export async function POST(request) {
     const { spotifyData } = await request.json();
 
     // Create a prompt based on Spotify data
-    const prompt = `
+const prompt = `
 You are a witty music critic who roasts people based on their Spotify listening habits. 
 Be funny, sarcastic, and a bit mean (but not offensive). 
 
 Here's their Spotify data:
 ${JSON.stringify(spotifyData, null, 2)}
 
-Generate a hilarious roast (3-5 paragraphs) about their music taste. 
+Generate a hilarious roast (2-3 paragraphs) about their music taste. 
+
+IMPORTANT RULES:
+- You MUST mention at least 2-3 specific song names or artist names from their actual data
+- Call out specific artists/songs to make it personal and relatable (e.g., "Oh, 'Blinding Lights' on repeat? Really?")
+- Reference their actual listening patterns, not generic music taste commentary
+- Make them think "damn, this AI actually knows what I listen to"
+- Be specific about embarrassing patterns (like playing the same artist 5 times in a row)
+
 Focus on:
-- Their top artists and genres
-- Any embarrassing patterns (too much of one artist, guilty pleasures, etc.)
+- Their top artists and genres (mention them BY NAME)
+- Specific songs they can't stop playing
+- Any embarrassing patterns (too much of one artist, same song on repeat, etc.)
 - The vibe/mood of their music choices
 - Any contradictions in their taste
 
-Make it entertaining and shareable!
+Make it entertaining, shareable, and most importantly - SPECIFIC to their actual data!
 `;
 
     const ai = new GoogleGenAI({
