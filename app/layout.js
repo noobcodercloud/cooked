@@ -1,6 +1,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import Aurora from "@/components/aurora";
+import Providers from "@/components/providors";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,7 +27,19 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col relative bg-black">
+        {/* Aurora as full-page background */}
+        <div className="fixed inset-0 -z-10">
+          <Aurora />
+        </div>
+
+        <Providers>
+          {/* Content layer */}
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
+      </body>
     </html>
   );
 }
