@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export default function Home() {
   const { data: session } = useSession();
-  // const session = true; // For testing, replace with actual session data later
   const [roast, setRoast] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -39,44 +38,45 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div className="min-h-[96vh] pt-15">
-        <div className="flex items-center gap-6 mt-20">
-
-          <div className="w-1/2">
-            <div className="text-8xl font-semibold flex flex-col py-10 px-20 text-white">
+    <div className="min-h-screen py-8 md:py-12 lg:py-16">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12 mt-8 md:mt-16 lg:mt-20">
+          
+          {/* Left side - Title and Button */}
+          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start">
+            <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold flex flex-col py-6 md:py-10 text-white text-center lg:text-left">
               <span>Get</span>
               <span>Cooked</span>
             </div>
-            <div className="px-20 text-white">
+            
+            <div className="text-white/80 text-base md:text-lg text-center lg:text-left mb-8 max-w-md">
               <span>Judges your spotify listening habits and roast you</span>
             </div>
-            {!session ? (
-              <div className="px-20 py-10">
+            
+            <div className="w-full flex justify-center lg:justify-start">
+              {!session ? (
                 <button
                   onClick={() => signIn("spotify")}
-                  className="bg-green-400/60 hover:bg-green-600/90 transition-all text-gray-950 cursor-pointer font-bold py-3 px-8 rounded-full"
+                  className="bg-green-400/60 hover:bg-green-600/90 transition-all text-gray-950 cursor-pointer font-bold py-3 px-8 rounded-full w-full sm:w-auto"
                 >
                   Connect Spotify
                 </button>
-              </div>
-            ) : (
-              <div className="px-20 py-10">
+              ) : (
                 <button
                   onClick={handleGetRoasted}
                   disabled={loading}
-                  className="bg-green-400/60 hover:bg-green-600/90 transition-all text-gray-950 cursor-pointer font-bold py-3 px-8 rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-green-400/60 hover:bg-green-600/90 transition-all text-gray-950 cursor-pointer font-bold py-3 px-8 rounded-full disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                 >
                   {loading ? "Cooking..." : "Get Roasted"}
                 </button>
-              </div>
-            )}
+              )}
+            </div>
           </div>
 
-          <div className="w-1/2 px-20">
-            {/* Right side roast display */}
+          {/* Right side - Roast display */}
+          <div className="w-full lg:w-1/2">
             {loading && (
-              <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+              <div className="bg-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-white/20">
                 <div className="animate-pulse">
                   <div className="h-4 bg-white/20 rounded w-3/4 mb-4"></div>
                   <div className="h-4 bg-white/20 rounded w-full mb-4"></div>
@@ -86,17 +86,17 @@ export default function Home() {
             )}
 
             {roast && !loading && (
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10">
-                <h2 className="text-3xl font-bold text-white mb-6">The opinion</h2>
-                <p className="text-white/90 whitespace-pre-wrap leading-relaxed">
+              <div className="bg-white/5 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-white/10">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6">The opinion</h2>
+                <p className="text-white/90 whitespace-pre-wrap leading-relaxed text-sm md:text-base">
                   {roast}
                 </p>
               </div>
             )}
 
             {!roast && !loading && session && (
-              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 text-center">
-                <p className="text-white/50 text-sm">
+              <div className="bg-white/5 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-white/10 text-center">
+                <p className="text-white/50 text-sm md:text-base">
                   Click "Get Roasted" to see what we think about your music taste.
                 </p>
               </div>
@@ -105,6 +105,6 @@ export default function Home() {
 
         </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }

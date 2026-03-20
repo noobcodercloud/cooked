@@ -1,13 +1,27 @@
-import React from 'react'
+import Link from "next/link";
 
-const footer = () => {
+export default function Footer() {
   return (
-    <div className='bg-slate-900 text-gray-400 text-center text-sm h-12 flex items-center justify-center'>
-      <span>
-        Cooked &copy; 2026 | Made with Next.js, Tailwind CSS, Spotify API, and Gemini AI.
-      </span>
-    </div>
-  )
+    <footer className="bg-white/5 backdrop-blur-sm border-t border-white/10 py-3 mt-auto">
+      <div className="container mx-auto px-6 text-center">
+        <p className="text-white/60 text-sm mb-1">
+          Not affiliated with Spotify AB or any of its affiliates.
+        </p>
+        <div className="flex justify-center gap-3 text-sm">
+          <Link href="/privacy" className="text-white/60 hover:text-white transition">
+            Privacy Policy
+          </Link>
+          <span className="text-white/40">•</span>
+          <a 
+            href="https://www.spotify.com/legal/privacy-policy/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-white/60 hover:text-white transition"
+          >
+            Spotify Privacy
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
 }
-
-export default footer

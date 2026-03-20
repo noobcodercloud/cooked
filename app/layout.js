@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col relative bg-black">
         {/* Aurora as full-page background */}
-        <div className="fixed inset-0 -z-10">
+        <div className="fixed inset-0 -z-40">
           <Aurora />
         </div>
 
