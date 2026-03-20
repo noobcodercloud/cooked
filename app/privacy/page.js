@@ -4,7 +4,7 @@ export default function Privacy() {
       <div className="max-w-4xl mx-auto bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-8">
         <h1 className="text-4xl font-bold mb-8 text-white">Privacy Policy</h1>
         
-        <p className="text-sm text-white/60 mb-8">Last updated: March 19, 2026</p>
+        <p className="text-sm text-white/60 mb-8">Last updated: March 20, 2026</p>
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-white">Introduction</h2>
@@ -136,7 +136,7 @@ export default function Privacy() {
             If you have any questions about this Privacy Policy or our practices, please contact us at:
           </p>
           <p className="text-white/80 mt-2">
-            Email: <a href="mailto:your-email@example.com" className="text-green-400 hover:text-green-300 transition underline">your-email@example.com</a>
+            Email: <a href="mailto:getcooked.contact@gmail.com" className="text-green-400 hover:text-green-300 transition underline">getcooked.contact@gmail.com</a>
           </p>
         </section>
       </div>
